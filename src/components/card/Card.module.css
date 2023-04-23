@@ -1,0 +1,85 @@
+.container {
+  box-sizing: border-box;
+  /* border: 1px solid red; */
+  margin: 2rem auto;
+  max-width: calc(3rem * var(--cardSize));
+  min-width: fit-content;
+  min-height: calc(4rem * var(--cardSize));
+}
+
+.card {
+  background-color: #eee;
+  background-color: antiquewhite;
+  background-color: #333;
+  border-radius: 1.5rem;
+  box-shadow: 0.5rem 0.5rem 0.4rem 0.3rem rgba(0, 0, 0, 0.2);
+  /* margin: 1rem; */
+  min-width: fit-content;
+  max-width: calc(3rem * var(--cardSize));
+  min-height: calc(4rem * var(--cardSize));
+  min-height: fit-content;
+  font-size: 1rem;
+}
+
+.header {
+  box-sizing: border-box;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.8rem 0.4rem 0 0.8rem; /* padding-right: value equal to gap */
+  margin: 0 0 0.8rem 0;
+  color: #ddd;
+}
+
+.btn {
+  border-radius: 50%;
+  max-width: 1.2rem;
+  min-width: 1.2rem;
+  max-height: 1.2rem;
+  cursor: pointer;
+}
+
+.minimize {
+  background-color: red;
+}
+
+.maximize {
+  background-color: orange;
+}
+
+.close {
+  background-color: green;
+}
+
+.title {
+  width: 100%;
+  min-width: max-content;
+  margin: 0 auto;
+  padding: 0 2.2rem 0 2rem
+}
+
+.content {
+  margin: 0rem 0 0 0;
+  padding: 3rem 2rem;
+  font-family: 'Courier New', Courier, monospace;
+  color: #ddd;
+  text-align: left;
+}
+
+.copytoclipboard {
+  cursor: copy;
+
+  padding: 0.2rem 0.5rem 0.2rem 0;
+  border-radius: 0.3rem;
+  transition: all 200ms linear 40ms;
+}
+
+.copytoclipboard:hover {
+  background-color: black;
+  padding: 0.2rem 0.5rem 0.2rem 0;
+  border-radius: 0.3rem;
+  transition: all 200ms linear 40ms;
+}

@@ -1,0 +1,14 @@
+.copytoclipboard {
+  cursor: copy;
+
+  padding: 0.2rem 0.5rem 0.2rem 0;
+  border-radius: 0.3rem;
+  transition: all 200ms linear 40ms;
+}
+
+.copytoclipboard:hover {
+  background-color: black;
+  padding: 0.2rem 0.5rem 0.2rem 0;
+  border-radius: 0.3rem;
+  transition: all 200ms linear 40ms;
+}
