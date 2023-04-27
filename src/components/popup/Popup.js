@@ -15,18 +15,11 @@ export default function Popup(props) {
     }, 3000);
   }, [notification]);
 
-  // const hidePopuup = () => {
-  //   setTimeout(() => {
-  //     notification.setNotification(null);
-  //   }, 3000);
-  // };
-
   useEffect(() => {
     hidePopup();
 
     return () => {
       hidePopup();
-      console.warn("Exit useEffect.");
     };
   }, [hidePopup]);
 

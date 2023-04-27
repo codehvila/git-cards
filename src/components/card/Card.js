@@ -1,7 +1,7 @@
 import styles from "./Card.module.css";
 
 export default function Card(props) {
-  const { children } = props;
+  const { children, title } = props;
 
   return (
     <div className={styles.container}>
@@ -11,7 +11,7 @@ export default function Card(props) {
           <div className={`${styles.btn} ${styles.maximize}`}>&nbsp;</div>
           <div className={`${styles.btn} ${styles.close}`}>&nbsp;</div>
 
-          <div className={styles.title}>Rewrite history</div>
+          <div className={styles.title}>{title}</div>
         </div>
 
         <div className={styles.content}>{children}</div>
