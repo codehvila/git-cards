@@ -2,6 +2,7 @@ import { useCallback, useEffect } from "react";
 import styles from "./Popup.module.css";
 
 export default function Popup(props) {
+  const TIMEOUT = 3000;
   const {
     notification = {
       text: "Hello!",
@@ -12,7 +13,7 @@ export default function Popup(props) {
   const hidePopup = useCallback(() => {
     setTimeout(() => {
       notification.setNotification(null);
-    }, 3000);
+    }, TIMEOUT);
   }, [notification]);
 
   useEffect(() => {
