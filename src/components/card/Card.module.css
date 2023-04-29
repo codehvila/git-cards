@@ -1,10 +1,8 @@
 .container {
   box-sizing: border-box;
-  /* border: 1px solid red; */
-  margin: 2rem auto;
-  max-width: calc(3rem * var(--cardSize));
+  margin: 1.2rem auto;
   min-width: fit-content;
-  /* min-height: calc(4rem * var(--cardSize)); */
+
 }
 
 .card {
@@ -13,10 +11,7 @@
   background-color: #333;
   border-radius: 1.5rem;
   box-shadow: 0.5rem 0.5rem 0.4rem 0.3rem rgba(0, 0, 0, 0.2);
-  /* margin: 1rem; */
   min-width: fit-content;
-  max-width: calc(3rem * var(--cardSize));
-  min-height: calc(4rem * var(--cardSize));
   min-height: fit-content;
   font-size: 1rem;
 }

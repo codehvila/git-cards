@@ -53,27 +53,29 @@ function App() {
         <div className="notification">
           {notification && <Popup notification={notification} />}
         </div>
-        <Card title="Rewrite history">
-          <Command setNotification={setNotification}>
-            <span>git</span> rebase -i HEAD~
-            <span style={{ color: "rgb(50, 240, 50)" }}>n</span>
-          </Command>
-        </Card>
+        <div className="cards-container">
+          <Card className="10rem" title="Rewrite history">
+            <Command setNotification={setNotification}>
+              <span>git</span> rebase -i HEAD~
+              <span style={{ color: "rgb(50, 240, 50)" }}>n</span>
+            </Command>
+          </Card>
 
-        {cardGitList &&
-          Object.keys(cardGitList).map((objKey) => (
-            <Card key={objKey} title={objKey}>
-              <Command key={objKey}>
-                {cardGitList[objKey].map((sentence) => (
-                  <Fragment key={sentence}>
-                    <Sentence setNotification={setNotification}>
-                      {sentence}
-                    </Sentence>
-                  </Fragment>
-                ))}
-              </Command>
-            </Card>
-          ))}
+          {cardGitList &&
+            Object.keys(cardGitList).map((objKey) => (
+              <Card key={objKey} title={objKey}>
+                <Command key={objKey}>
+                  {cardGitList[objKey].map((sentence) => (
+                    <Fragment key={sentence}>
+                      <Sentence setNotification={setNotification}>
+                        {sentence}
+                      </Sentence>
+                    </Fragment>
+                  ))}
+                </Command>
+              </Card>
+            ))}
+        </div>
       </div>
     </div>
   );
