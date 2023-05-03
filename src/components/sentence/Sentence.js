@@ -2,7 +2,10 @@ import styles from "./Sentence.module.css";
 
 export default function Sentence(props) {
   const { setNotification, children } = props;
-  const TEXT_NOTIFICACION = "Command copied to clipboard!";
+  const textSentenceNotification = children.toString();
+  const TEXT_NOTIFICACION = textSentenceNotification
+    ? `"${textSentenceNotification}" copied to clipboard!`
+    : "Command copied to clipboard!";
   const POPUP_CATEGORY = "info";
 
   const copyContent = async (event) => {
