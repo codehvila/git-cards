@@ -4,7 +4,7 @@ import "./App.css";
 import Card from "./components/card/Card";
 import Popup from "./components/popup/Popup";
 import Command from "./components/command/Command";
-import Sentence from "./components/Sentence/Sentence";
+import Sentence from "./components/sentence/Sentence";
 
 function App() {
   const [notification, setNotification] = useState(null);
@@ -22,6 +22,11 @@ function App() {
       "git push origin master",
       "git push --force origin master",
     ],
+    "Remove a file from repository": [
+      "git rm filename.ext",
+      "git rm --cached filename.ext",
+    ],
+    "Stash working files": ["git stash", "git stash list", "git stash pop"],
   };
 
   const cardBashList = {
@@ -31,7 +36,9 @@ function App() {
     "Remove a non empty directory": ["rm -dr bonjour"],
   };
 
-  const cardList = { git: cardGitList, bash: cardBashList };
+  const cardList = [{ git: cardGitList }, { bash: cardBashList }];
+
+  console.info(cardList);
 
   return (
     <div className="App">
@@ -54,13 +61,6 @@ function App() {
           {notification && <Popup notification={notification} />}
         </div>
         <div className="cards-container">
-          <Card className="10rem" title="Rewrite history">
-            <Command setNotification={setNotification}>
-              <span>git</span> rebase -i HEAD~
-              <span style={{ color: "rgb(50, 240, 50)" }}>n</span>
-            </Command>
-          </Card>
-
           {cardGitList &&
             Object.keys(cardGitList).map((objKey) => (
               <Card key={objKey} title={objKey}>
