@@ -36,7 +36,8 @@ function App() {
     "Remove a non empty directory": ["rm -dr bonjour"],
   };
 
-  const cardList = [{ git: cardGitList }, { bash: cardBashList }];
+  // const cardList = [{ git: cardGitList }, { bash: cardBashList }];
+  const cardList = { ...cardBashList, ...cardGitList };
 
   console.info(cardList);
 
@@ -61,11 +62,11 @@ function App() {
           {notification && <Popup notification={notification} />}
         </div>
         <div className="cards-container">
-          {cardGitList &&
-            Object.keys(cardGitList).map((objKey) => (
+          {cardList &&
+            Object.keys(cardList).map((objKey) => (
               <Card key={objKey} title={objKey}>
                 <Command key={objKey}>
-                  {cardGitList[objKey].map((sentence) => (
+                  {cardList[objKey].map((sentence) => (
                     <Fragment key={sentence}>
                       <Sentence setNotification={setNotification}>
                         {sentence}
