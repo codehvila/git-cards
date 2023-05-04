@@ -24,7 +24,7 @@
   justify-content: flex-start;
   align-items: center;
   gap: 0.4rem;
-  padding: 0.8rem 0.4rem 0 0.8rem; /* padding-right: value equal to gap */
+  padding: 0.8rem 0.8rem 0 0.8rem; /* padding-right: value equal to gap */
   margin: 0 0 0.8rem 0;
   color: #ddd;
 }
@@ -77,4 +77,16 @@
   padding: 0.2rem 0.5rem 0.2rem 0;
   border-radius: 0.3rem;
   transition: all 200ms linear 40ms;
+}
+
+.icon {
+  color: red;
+  background-color: #ddd;
+  padding: 0.1rem 0.1rem 0 0.1rem;
+  border-radius: 50%;
+  max-width: 1.1rem;
+  min-width: 1.1rem;
+  max-height: 1.1rem;
+  min-height: 1.1rem;
+  cursor: pointer;
 }

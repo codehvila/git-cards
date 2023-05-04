@@ -1,4 +1,6 @@
 import styles from "./Card.module.css";
+import gitIcon from "./git.svg";
+import bashIcon from "./bash.svg";
 
 export default function Card(props) {
   const { children, title } = props;
@@ -12,6 +14,13 @@ export default function Card(props) {
           <div className={`${styles.btn} ${styles.close}`}>&nbsp;</div>
 
           <div className={styles.title}>{title}</div>
+          <div className={styles.icon}>
+            {Math.round(Math.random()) === 0 ? (
+              <img src={bashIcon} alt="Bash icon" />
+            ) : (
+              <img src={gitIcon} alt="Git icon" />
+            )}
+          </div>
         </div>
 
         <div className={styles.content}>{children}</div>
