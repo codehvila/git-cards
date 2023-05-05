@@ -7,6 +7,15 @@ import Command from "./components/command/Command";
 import Sentence from "./components/sentence/Sentence";
 
 function App() {
+  const setFontSize = (fontSize) => {
+    const objectFontSize = { small: "12px", normal: "16px", big: "20px" };
+    const htmlElement = document.querySelector("html");
+    htmlElement.style.setProperty(
+      "--rootfontsize",
+      `${objectFontSize[fontSize]}`
+    );
+  };
+
   const [notification, setNotification] = useState(null);
 
   const cardGitList = {
@@ -60,6 +69,28 @@ function App() {
       <div className="App-content">
         <div className="notification">
           {notification && <Popup notification={notification} />}
+        </div>
+        <div className="rootfontsize">
+          <div>
+            <span
+              onClick={() => setFontSize("small")}
+              style={{ fontSize: "12px" }}
+            >
+              A
+            </span>{" "}
+            <span
+              onClick={() => setFontSize("normal")}
+              style={{ fontSize: "16px" }}
+            >
+              A
+            </span>{" "}
+            <span
+              onClick={() => setFontSize("big")}
+              style={{ fontSize: "20px" }}
+            >
+              A
+            </span>
+          </div>
         </div>
         <div className="cards-container">
           {cardList &&

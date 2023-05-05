@@ -1,6 +1,23 @@
 :root {
+  --rootfontsize: 12px;
   --cardSize: 8;
   --bkgrdcolor: #eee;
+}
+
+html {
+  font-size: var(--rootfontsize);
+}
+
+.brand-text {
+  /* font-size: xx-large; */
+  /* font-size: larger; */
+  /* font-size: x-large; */
+  /* font-size: smaller; */
+  /* font-size: large; */
+  /* font-size: medium; */
+  /* font-size: small; */
+  /* font-size: x-small; */
+  /* font-size: xx-small; */
 }
 
 body {
