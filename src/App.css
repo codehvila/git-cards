@@ -52,8 +52,16 @@
 
 .cards-container {
   display: flex;
+  flex-direction: row;
   gap: 1rem;
   flex-wrap: wrap;
+  justify-content: center;
+}
+
+.card-types {
+  box-sizing: border-box;
+  /* border: 1px solid red; */
+  margin-top: 0.9rem;
 }
 
 @keyframes App-logo-spin {

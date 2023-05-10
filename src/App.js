@@ -1,4 +1,5 @@
 import { useState, Fragment } from "react";
+import { v4 as uuidv4 } from "uuid";
 import logo from "./logo.svg";
 import "./App.css";
 import Card from "./components/card/Card";
@@ -45,10 +46,8 @@ function App() {
     "Remove a non empty directory": ["rm -dr bonjour"],
   };
 
-  // const cardList = [{ git: cardGitList }, { bash: cardBashList }];
-  const cardList = { ...cardBashList, ...cardGitList };
-
-  console.info(cardList);
+  const cardList = [{ git: cardGitList }, { bash: cardBashList }];
+  // const cardList = { ...cardBashList, ...cardGitList };
 
   return (
     <div className="App">
@@ -92,8 +91,60 @@ function App() {
             </span>
           </div>
         </div>
-        <div className="cards-container">
+        <div className="card-types">
           {cardList &&
+            cardList.map((cardTypes) => (
+              <span key={uuidv4()} style={{ fontWeight: "bolder" }}>
+                {Object.keys(cardTypes)}&nbsp;
+              </span>
+            ))}
+        </div>
+        <div className="cards-container">
+          {/* const cardList = [{ git: cardGitList }, { bash: cardBashList }]; */}
+
+          {cardList &&
+            cardList.map((cardTypes) => (
+              <Fragment key={Object.keys(cardTypes)}>
+                {Object.keys(cardTypes).map((cardTypeKey) => {
+                  return Object.values(cardTypes).map((cardTypeObj) => {
+                    return Object.keys(cardTypeObj).map((cardKeyTitle) => (
+                      <Card
+                        key={cardKeyTitle}
+                        title={cardKeyTitle}
+                        type={cardTypeKey}
+                      >
+                        <Command>
+                          {cardTypeObj[cardKeyTitle].map((sentence) => (
+                            <Fragment key={sentence}>
+                              <Sentence setNotification={setNotification}>
+                                {sentence}
+                              </Sentence>
+                            </Fragment>
+                          ))}
+                        </Command>
+                      </Card>
+                    ));
+                  });
+                })}
+              </Fragment>
+            ))}
+
+          {/* {cardList &&
+            Object.keys(cardTypeObj).map((objKey) => (
+              <Card key={objKey} title={objKey}>
+                <Command key={objKey}>
+                  {cardTypeObj[objKey].map((sentence) => (
+                    <Fragment key={sentence}>
+                      <Sentence setNotification={setNotification}>
+                        {sentence}
+                      </Sentence>
+                    </Fragment>
+                  ))}
+                </Command>
+              </Card>
+            ))} */}
+
+          {/* {cardList &&
             Object.keys(cardList).map((objKey) => (
               <Card key={objKey} title={objKey}>
                 <Command key={objKey}>
@@ -106,7 +157,7 @@ function App() {
                   ))}
                 </Command>
               </Card>
-            ))}
+            ))} */}
         </div>
       </div>
     </div>

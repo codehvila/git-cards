@@ -3,7 +3,7 @@ import gitIcon from "./git.svg";
 import bashIcon from "./bash.svg";
 
 export default function Card(props) {
-  const { children, title } = props;
+  const { children, title, type } = props;
 
   return (
     <div className={styles.container}>
@@ -15,10 +15,10 @@ export default function Card(props) {
 
           <div className={styles.title}>{title}</div>
           <div className={styles.icon}>
-            {Math.round(Math.random()) === 0 ? (
-              <img src={bashIcon} alt="Bash icon" />
-            ) : (
+            {type && type === "git" ? (
               <img src={gitIcon} alt="Git icon" />
+            ) : (
+              <img src={bashIcon} alt="Bash icon" />
             )}
           </div>
         </div>
