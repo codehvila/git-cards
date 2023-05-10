@@ -36,7 +36,22 @@ function App() {
       "git rm filename.ext",
       "git rm --cached filename.ext",
     ],
-    "Stash working files": ["git stash", "git stash list", "git stash pop"],
+    "Stash working files": [
+      "git stash",
+      "git stash -u, --include-untracked",
+      "git stash save 'message'",
+      "git stash list",
+      "git stash apply",
+      "git stash apply stash@{n}",
+      "git stash pop",
+      "git stash pop stash@{n}",
+      "git stash show",
+      "git stash show -p",
+      "git stash branch branch-name stash@{n}",
+      "git stash drop stash@{n}",
+      "git stash -a, --all",
+      "git stash clear",
+    ],
   };
 
   const cardBashList = {
@@ -128,36 +143,6 @@ function App() {
                 })}
               </Fragment>
             ))}
-
-          {/* {cardList &&
-            Object.keys(cardTypeObj).map((objKey) => (
-              <Card key={objKey} title={objKey}>
-                <Command key={objKey}>
-                  {cardTypeObj[objKey].map((sentence) => (
-                    <Fragment key={sentence}>
-                      <Sentence setNotification={setNotification}>
-                        {sentence}
-                      </Sentence>
-                    </Fragment>
-                  ))}
-                </Command>
-              </Card>
-            ))} */}
-
-          {/* {cardList &&
-            Object.keys(cardList).map((objKey) => (
-              <Card key={objKey} title={objKey}>
-                <Command key={objKey}>
-                  {cardList[objKey].map((sentence) => (
-                    <Fragment key={sentence}>
-                      <Sentence setNotification={setNotification}>
-                        {sentence}
-                      </Sentence>
-                    </Fragment>
-                  ))}
-                </Command>
-              </Card>
-            ))} */}
         </div>
       </div>
     </div>
