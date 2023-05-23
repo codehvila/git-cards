@@ -124,6 +124,58 @@ function App() {
     })
   );
   console.log("==============");
+  console.log(" ");
+  console.log("*************** START 2. - - - - - - - - - - - - - -");
+  console.log(" ");
+  console.info("correctCardObject: ", correctCardObject);
+  console.log(" ");
+  console.info("correctCardObject's Keys: ", Object.keys(correctCardObject));
+  const cardsTypes = Object.keys(correctCardObject);
+  console.log(" ");
+  console.info("cardsTypes: ", cardsTypes);
+  console.log(" ");
+  let allCards = [];
+  console.info(
+    "All Cards: ",
+    cardsTypes.map((cardType) => {
+      console.info("Card Type: ", cardType);
+
+      console.info(`${cardType} Cards: `, correctCardObject[cardType]);
+
+      return Object.keys(correctCardObject[cardType]).map((cardTitle) => {
+        console.info("Card title: ", cardTitle);
+        console.info(
+          "Card Sentences: ",
+          correctCardObject[cardType][cardTitle]
+        );
+        const sentences = correctCardObject[cardType][cardTitle];
+        allCards.push({ type: cardType, title: cardTitle, sentences });
+        return { type: cardType, title: cardTitle, sentences };
+      });
+    })
+  );
+  console.log(" ");
+  console.info("All Cards concatenated: ", allCards);
+  console.log(" ");
+  console.log("*************** END 2. = = = = = = = = = = = = = = =");
+  console.log(" ");
+
+  const cardObjectToList = (cardsObject) => {
+    const cardsList = [];
+    const cardsTypes = Object.keys(cardsObject);
+    cardsTypes.map((cardType) => {
+      const cardTitles = Object.keys(cardsObject[cardType]);
+      return cardTitles.map((cardTitle) => {
+        const sentences = cardsObject[cardType][cardTitle];
+        cardsList.push({ type: cardType, title: cardTitle, sentences });
+      });
+    });
+    return cardsList;
+  };
+  console.info(
+    "* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * : ",
+    cardObjectToList(correctCardObject)
+  );
 
   // console.info(
   //   "New cards values: ",
@@ -243,21 +295,23 @@ function App() {
           {correctCardObject &&
             Object.keys(correctCardObject).map((cardType) => (
               <Fragment key={uuidv4()}>
-                {Object.values(correctCardObject).map((cardTypeObject) => {
-                  return Object.keys(cardTypeObject).map((cardTitle) => (
-                    <Card key={uuidv4()} title={cardTitle} type={cardType}>
-                      <Command>
-                        {cardTypeObject[cardTitle].map((sentence) => (
-                          <Fragment key={uuidv4()}>
-                            <Sentence setNotification={setNotification}>
-                              {sentence}_
-                            </Sentence>
-                          </Fragment>
-                        ))}
-                      </Command>
-                    </Card>
-                  ));
-                })}
+                {Object.keys(correctCardObject[cardType]).map(
+                  (cardTypeObject) => {
+                    return Object.keys(cardTypeObject).map((cardTitle) => (
+                      <Card key={uuidv4()} title={cardTitle} type={cardType}>
+                        <Command>
+                          {cardTypeObject[cardTitle].map((sentence) => (
+                            <Fragment key={uuidv4()}>
+                              <Sentence setNotification={setNotification}>
+                                {sentence}_
+                              </Sentence>
+                            </Fragment>
+                          ))}
+                        </Command>
+                      </Card>
+                    ));
+                  }
+                )}
               </Fragment>
             ))}
 
