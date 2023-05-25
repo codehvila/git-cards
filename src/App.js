@@ -73,9 +73,9 @@ function App() {
     ],
   };
 
-  const cardList = [{ git: cardGitList }, { bash: cardBashList }];
+  const cardObject = [{ git: cardGitList }, { bash: cardBashList }];
   const correctCardObject = { git: cardGitList, bash: cardBashList };
-  // const cardList = { ...cardBashList, ...cardGitList };
+  // const cardObject = { ...cardBashList, ...cardGitList };
 
   console.log("--------------");
   console.info("Correct cardObject: ", correctCardObject);
@@ -176,10 +176,11 @@ function App() {
     "* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * : ",
     cardObjectToCardList(correctCardObject)
   );
+  const cardList = cardObjectToCardList(correctCardObject);
 
   // console.info(
   //   "New cards values: ",
-  //   cardList.map((cardTypeObject) => {
+  //   cardObject.map((cardTypeObject) => {
   //     console.log(cardTypeObject);
   //     console.log(Object.keys(cardTypeObject));
   //     return Object.values(cardTypeObject).map((value) => {
@@ -254,18 +255,18 @@ function App() {
           </div>
         </div>
         <div className="card-types">
-          {cardList &&
-            cardList.map((cardTypes) => (
+          {cardObject &&
+            cardObject.map((cardTypes) => (
               <span key={uuidv4()} style={{ fontWeight: "bolder" }}>
                 {Object.keys(cardTypes)}&nbsp;
               </span>
             ))}
         </div>
         <div className="cards-container">
-          {/* const cardList = [{ git: cardGitList }, { bash: cardBashList }]; */}
+          {/* const cardObject = [{ git: cardGitList }, { bash: cardBashList }]; */}
 
-          {cardList &&
-            cardList.map((cardTypes) => (
+          {cardObject &&
+            cardObject.map((cardTypes) => (
               <Fragment key={Object.keys(cardTypes)}>
                 {Object.keys(cardTypes).map((cardTypeKey) => {
                   return Object.values(cardTypes).map((cardTypeObj) => {
@@ -292,8 +293,8 @@ function App() {
             ))}
           <p>= = = = = = =</p>
 
-          {cardObjectToCardList(correctCardObject) &&
-            cardObjectToCardList(correctCardObject).map((card) => (
+          {cardList &&
+            cardList.map((card) => (
               <Fragment key={uuidv4()}>
                 <Card key={uuidv4()} title={card.title} type={card.type}>
                   <Command>
@@ -309,7 +310,7 @@ function App() {
               </Fragment>
             ))}
 
-          {/* {cardList &&
+          {/* {cardObject &&
             Object.keys(cardTypeObj).map((objKey) => (
               <Card key={objKey} title={objKey}>
                 <Command key={objKey}>
@@ -324,11 +325,11 @@ function App() {
               </Card>
             ))} */}
 
-          {/* {cardList &&
-            Object.keys(cardList).map((objKey) => (
+          {/* {cardObject &&
+            Object.keys(cardObject).map((objKey) => (
               <Card key={objKey} title={objKey}>
                 <Command key={objKey}>
-                  {cardList[objKey].map((sentence) => (
+                  {cardObject[objKey].map((sentence) => (
                     <Fragment key={sentence}>
                       <Sentence setNotification={setNotification}>
                         {sentence}
