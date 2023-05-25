@@ -73,94 +73,11 @@ function App() {
     ],
   };
 
-  const cardList = [{ git: cardGitList }, { bash: cardBashList }];
+  const cardObject = [{ git: cardGitList }, { bash: cardBashList }];
   const correctCardObject = { git: cardGitList, bash: cardBashList };
-  // const cardList = { ...cardBashList, ...cardGitList };
+  // const cardObject = { ...cardBashList, ...cardGitList };
 
-  console.log("--------------");
-  console.info("Correct cardObject: ", correctCardObject);
-  console.log(". . . . . .");
-  console.log(
-    "correctCardObject keys is an array of strings?: ",
-    Object.keys(correctCardObject)
-  );
-  console.log(
-    "correctCardObject values is an array of objects?: ",
-    Object.values(correctCardObject)
-  );
-  console.log(". . . . . .");
-  console.log(
-    "cardType is a string?: ",
-    Object.keys(correctCardObject).map((cardType) => {
-      console.log("cardType is a string?: ", cardType);
-    })
-  );
-  let counter = 0;
-  console.log(
-    "cardTypeObject is an object?: ",
-    Object.values(correctCardObject).map((cardTypeObject) => {
-      console.log("cardTypeObject is an object of cards?: ", cardTypeObject);
-      console.log(
-        "cardTypeObject keys is an array of titles: ",
-        Object.keys(cardTypeObject)
-      );
-      console.log(
-        "cardTypeObject values is an array of arrays of sentences: ",
-        Object.values(cardTypeObject)
-      );
-      console.log(
-        "cardTypeObject[cardTitle] is ...: ",
-        Object.keys(cardTypeObject).map((cardTitle) => {
-          console.log("-  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -");
-          console.log("cardTitle is a string?: ", cardTitle);
-          console.log(
-            "cardTypeObject[cardTitle] is ...: ",
-            cardTypeObject[cardTitle].map((sentence) => {
-              console.log(`  ${counter++} sentence is a string?: `, sentence);
-            })
-          );
-        })
-      );
-    })
-  );
-  console.log("==============");
-  console.log(" ");
-  console.log("*************** START 2. - - - - - - - - - - - - - -");
-  console.log(" ");
-  console.info("correctCardObject: ", correctCardObject);
-  console.log(" ");
-  console.info("correctCardObject's Keys: ", Object.keys(correctCardObject));
-  const cardsTypes = Object.keys(correctCardObject);
-  console.log(" ");
-  console.info("cardsTypes: ", cardsTypes);
-  console.log(" ");
-  let allCards = [];
-  console.info(
-    "All Cards: ",
-    cardsTypes.map((cardType) => {
-      console.info("Card Type: ", cardType);
-
-      console.info(`${cardType} Cards: `, correctCardObject[cardType]);
-
-      return Object.keys(correctCardObject[cardType]).map((cardTitle) => {
-        console.info("Card title: ", cardTitle);
-        console.info(
-          "Card Sentences: ",
-          correctCardObject[cardType][cardTitle]
-        );
-        const sentences = correctCardObject[cardType][cardTitle];
-        allCards.push({ type: cardType, title: cardTitle, sentences });
-        return { type: cardType, title: cardTitle, sentences };
-      });
-    })
-  );
-  console.log(" ");
-  console.info("All Cards concatenated: ", allCards);
-  console.log(" ");
-  console.log("*************** END 2. = = = = = = = = = = = = = = =");
-  console.log(" ");
-
-  const cardObjectToList = (cardsObject) => {
+  const cardObjectToCardList = (cardsObject) => {
     const cardsList = [];
     const cardsTypes = Object.keys(cardsObject);
     cardsTypes.map((cardType) => {
@@ -174,42 +91,9 @@ function App() {
   };
   console.info(
     "* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * : ",
-    cardObjectToList(correctCardObject)
+    cardObjectToCardList(correctCardObject)
   );
-
-  // console.info(
-  //   "New cards values: ",
-  //   cardList.map((cardTypeObject) => {
-  //     console.log(cardTypeObject);
-  //     console.log(Object.keys(cardTypeObject));
-  //     return Object.values(cardTypeObject).map((value) => {
-  //       return Object.values(value);
-  //     });
-  //   })
-  // );
-
-  const newCardBashList = [
-    {
-      title: "Make a directory",
-      sentences: ["mkdir directory-name"],
-      type: "bash",
-    },
-    {
-      title: "Change name to a directory",
-      sentences: ["mv old-directory-name new-directory-name"],
-      type: "bash",
-    },
-    {
-      title: "Remove an empty directory",
-      sentences: ["rm -d bonjour"],
-      type: "bash",
-    },
-    {
-      title: "Remove a non empty directory",
-      sentences: ["rm -dr bonjour"],
-      type: "bash",
-    },
-  ];
+  const cardList = cardObjectToCardList(correctCardObject);
 
   return (
     <div className="App">
@@ -254,18 +138,16 @@ function App() {
           </div>
         </div>
         <div className="card-types">
-          {cardList &&
-            cardList.map((cardTypes) => (
+          {cardObject &&
+            cardObject.map((cardTypes) => (
               <span key={uuidv4()} style={{ fontWeight: "bolder" }}>
                 {Object.keys(cardTypes)}&nbsp;
               </span>
             ))}
         </div>
         <div className="cards-container">
-          {/* const cardList = [{ git: cardGitList }, { bash: cardBashList }]; */}
-
-          {cardList &&
-            cardList.map((cardTypes) => (
+          {cardObject &&
+            cardObject.map((cardTypes) => (
               <Fragment key={Object.keys(cardTypes)}>
                 {Object.keys(cardTypes).map((cardTypeKey) => {
                   return Object.values(cardTypes).map((cardTypeObj) => {
@@ -290,28 +172,21 @@ function App() {
                 })}
               </Fragment>
             ))}
-          <p>= = = = = = =</p>
 
-          {correctCardObject &&
-            Object.keys(correctCardObject).map((cardType) => (
+          {cardList &&
+            cardList.map((card) => (
               <Fragment key={uuidv4()}>
-                {Object.keys(correctCardObject[cardType]).map(
-                  (cardTypeObject) => {
-                    return Object.keys(cardTypeObject).map((cardTitle) => (
-                      <Card key={uuidv4()} title={cardTitle} type={cardType}>
-                        <Command>
-                          {cardTypeObject[cardTitle].map((sentence) => (
-                            <Fragment key={uuidv4()}>
-                              <Sentence setNotification={setNotification}>
-                                {sentence}_
-                              </Sentence>
-                            </Fragment>
-                          ))}
-                        </Command>
-                      </Card>
-                    ));
-                  }
-                )}
+                <Card key={uuidv4()} title={card.title} type={card.type}>
+                  <Command>
+                    {card.sentences.map((sentence) => (
+                      <Fragment key={uuidv4()}>
+                        <Sentence setNotification={setNotification}>
+                          {sentence}_
+                        </Sentence>
+                      </Fragment>
+                    ))}
+                  </Command>
+                </Card>
               </Fragment>
             ))}
         </div>
