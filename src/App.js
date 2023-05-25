@@ -160,7 +160,7 @@ function App() {
   console.log("*************** END 2. = = = = = = = = = = = = = = =");
   console.log(" ");
 
-  const cardObjectToList = (cardsObject) => {
+  const cardObjectToCardList = (cardsObject) => {
     const cardsList = [];
     const cardsTypes = Object.keys(cardsObject);
     cardsTypes.map((cardType) => {
@@ -174,7 +174,7 @@ function App() {
   };
   console.info(
     "* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * : ",
-    cardObjectToList(correctCardObject)
+    cardObjectToCardList(correctCardObject)
   );
 
   // console.info(
@@ -292,26 +292,20 @@ function App() {
             ))}
           <p>= = = = = = =</p>
 
-          {correctCardObject &&
-            Object.keys(correctCardObject).map((cardType) => (
+          {cardObjectToCardList(correctCardObject) &&
+            cardObjectToCardList(correctCardObject).map((card) => (
               <Fragment key={uuidv4()}>
-                {Object.keys(correctCardObject[cardType]).map(
-                  (cardTypeObject) => {
-                    return Object.keys(cardTypeObject).map((cardTitle) => (
-                      <Card key={uuidv4()} title={cardTitle} type={cardType}>
-                        <Command>
-                          {cardTypeObject[cardTitle].map((sentence) => (
-                            <Fragment key={uuidv4()}>
-                              <Sentence setNotification={setNotification}>
-                                {sentence}_
-                              </Sentence>
-                            </Fragment>
-                          ))}
-                        </Command>
-                      </Card>
-                    ));
-                  }
-                )}
+                <Card key={uuidv4()} title={card.title} type={card.type}>
+                  <Command>
+                    {card.sentences.map((sentence) => (
+                      <Fragment key={uuidv4()}>
+                        <Sentence setNotification={setNotification}>
+                          {sentence}_
+                        </Sentence>
+                      </Fragment>
+                    ))}
+                  </Command>
+                </Card>
               </Fragment>
             ))}
 
