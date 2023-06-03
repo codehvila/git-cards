@@ -78,21 +78,20 @@ function App() {
   // const cardObject = { ...cardBashList, ...cardGitList };
 
   const cardObjectToCardList = (cardsObject) => {
-    const cardsList = [];
+    const cardList = [];
     const cardsTypes = Object.keys(cardsObject);
     cardsTypes.map((cardType) => {
       const cardTitles = Object.keys(cardsObject[cardType]);
-      return cardTitles.map((cardTitle) => {
+      cardTitles.map((cardTitle) => {
         const sentences = cardsObject[cardType][cardTitle];
-        cardsList.push({ type: cardType, title: cardTitle, sentences });
+        cardList.push({ type: cardType, title: cardTitle, sentences });
+        return null;
       });
+      return null;
     });
-    return cardsList;
+    return cardList;
   };
-  console.info(
-    "* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * : ",
-    cardObjectToCardList(correctCardObject)
-  );
+
   const cardList = cardObjectToCardList(correctCardObject);
 
   return (
