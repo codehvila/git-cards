@@ -146,33 +146,6 @@ function App() {
             ))}
         </div>
         <div className="cards-container">
-          {cardObject &&
-            cardObject.map((cardTypes) => (
-              <Fragment key={Object.keys(cardTypes)}>
-                {Object.keys(cardTypes).map((cardTypeKey) => {
-                  return Object.values(cardTypes).map((cardTypeObj) => {
-                    return Object.keys(cardTypeObj).map((cardKeyTitle) => (
-                      <Card
-                        key={cardKeyTitle}
-                        title={cardKeyTitle}
-                        type={cardTypeKey}
-                      >
-                        <Command>
-                          {cardTypeObj[cardKeyTitle].map((sentence) => (
-                            <Fragment key={sentence}>
-                              <Sentence setNotification={setNotification}>
-                                {sentence}_bad_approach
-                              </Sentence>
-                            </Fragment>
-                          ))}
-                        </Command>
-                      </Card>
-                    ));
-                  });
-                })}
-              </Fragment>
-            ))}
-
           {cardList &&
             cardList.map((card) => (
               <Fragment key={uuidv4()}>
