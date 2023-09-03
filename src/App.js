@@ -2,6 +2,7 @@ import { useState, Fragment } from "react";
 import { v4 as uuidv4 } from "uuid";
 import logo from "./logo.svg";
 import "./App.css";
+
 import Card from "./components/card/Card";
 import Popup from "./components/popup/Popup";
 import Command from "./components/command/Command";
@@ -160,7 +161,7 @@ function App() {
                           {cardTypeObj[cardKeyTitle].map((sentence) => (
                             <Fragment key={sentence}>
                               <Sentence setNotification={setNotification}>
-                                {sentence}
+                                {sentence}_bad_approach
                               </Sentence>
                             </Fragment>
                           ))}
@@ -180,7 +181,7 @@ function App() {
                     {card.sentences.map((sentence) => (
                       <Fragment key={uuidv4()}>
                         <Sentence setNotification={setNotification}>
-                          {sentence}_
+                          {sentence}
                         </Sentence>
                       </Fragment>
                     ))}
