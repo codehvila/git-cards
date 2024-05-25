@@ -20,13 +20,19 @@ function App() {
   const [notification, setNotification] = useState(null);
 
   const cardGitList = {
-    "Rewrite history": ["git rebase -i HEAD~n", "git commit --amend --no-edit"],
+    "Rewrite history": [
+      "git rebase -i HEAD~n",
+      "git add path/to/filename",
+      "git commit -m 'Commit comment phrase'",
+      "git commit --amend --no-edit",
+    ],
 
     "Undo n commits": ["git reset [--hard | --mixed | --soft] HEAD~n"],
     "Log commits": [
       "git log --oneline -- src/path/filename.js",
       "git log --oneline -n 8",
     ],
+    "Manage Branchs": ["git branch", "git checkout 'Branch name to move'"],
     "Push commits": [
       "git push origin master~n:master",
       "git push origin master",
