@@ -2,6 +2,7 @@ import { useState, Fragment } from "react";
 import { v4 as uuidv4 } from "uuid";
 import logo from "./logo.svg";
 import "./App.css";
+
 import Card from "./components/card/Card";
 import Popup from "./components/popup/Popup";
 import Command from "./components/command/Command";
@@ -65,10 +66,40 @@ function App() {
     "Change name to a directory": ["mv old-directory-name new-directory-name"],
     "Remove an empty directory": ["rm -d bonjour"],
     "Remove a non empty directory": ["rm -dr bonjour"],
+    "Install .deb files in the command line": [
+      "sudo apt install path_to_deb_file",
+      "sudo apt install gdebi",
+      "sudo apt list --installed | grep chat",
+      "dpkg -l | grep chat",
+    ],
+    "Unninstall .deb files in the command line": [
+      "sudo apt remove program_name",
+      "sudo apt list --installed | grep chat",
+      "dpkg -l | grep chat",
+      "dpkg -r program_name",
+    ],
   };
 
-  const cardList = [{ git: cardGitList }, { bash: cardBashList }];
-  // const cardList = { ...cardBashList, ...cardGitList };
+  const cardObject = [{ git: cardGitList }, { bash: cardBashList }];
+  const correctCardObject = { git: cardGitList, bash: cardBashList };
+  // const cardObject = { ...cardBashList, ...cardGitList };
+
+  const cardObjectToCardList = (cardsObject) => {
+    const cardList = [];
+    const cardsTypes = Object.keys(cardsObject);
+    cardsTypes.map((cardType) => {
+      const cardTitles = Object.keys(cardsObject[cardType]);
+      cardTitles.map((cardTitle) => {
+        const sentences = cardsObject[cardType][cardTitle];
+        cardList.push({ type: cardType, title: cardTitle, sentences });
+        return null;
+      });
+      return null;
+    });
+    return cardList;
+  };
+
+  const cardList = cardObjectToCardList(correctCardObject);
 
   return (
     <div className="App">
@@ -113,40 +144,28 @@ function App() {
           </div>
         </div>
         <div className="card-types">
-          {cardList &&
-            cardList.map((cardTypes) => (
+          {cardObject &&
+            cardObject.map((cardTypes) => (
               <span key={uuidv4()} style={{ fontWeight: "bolder" }}>
                 {Object.keys(cardTypes)}&nbsp;
               </span>
             ))}
         </div>
         <div className="cards-container">
-          {/* const cardList = [{ git: cardGitList }, { bash: cardBashList }]; */}
-
           {cardList &&
-            cardList.map((cardTypes) => (
-              <Fragment key={Object.keys(cardTypes)}>
-                {Object.keys(cardTypes).map((cardTypeKey) => {
-                  return Object.values(cardTypes).map((cardTypeObj) => {
-                    return Object.keys(cardTypeObj).map((cardKeyTitle) => (
-                      <Card
-                        key={cardKeyTitle}
-                        title={cardKeyTitle}
-                        type={cardTypeKey}
-                      >
-                        <Command>
-                          {cardTypeObj[cardKeyTitle].map((sentence) => (
-                            <Fragment key={sentence}>
-                              <Sentence setNotification={setNotification}>
-                                {sentence}
-                              </Sentence>
-                            </Fragment>
-                          ))}
-                        </Command>
-                      </Card>
-                    ));
-                  });
-                })}
+            cardList.map((card) => (
+              <Fragment key={uuidv4()}>
+                <Card key={uuidv4()} title={card.title} type={card.type}>
+                  <Command>
+                    {card.sentences.map((sentence) => (
+                      <Fragment key={uuidv4()}>
+                        <Sentence setNotification={setNotification}>
+                          {sentence}
+                        </Sentence>
+                      </Fragment>
+                    ))}
+                  </Command>
+                </Card>
               </Fragment>
             ))}
         </div>
