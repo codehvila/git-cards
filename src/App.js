@@ -125,19 +125,21 @@ function App() {
           <div>
             <span
               onClick={() => setFontSize("small")}
-              style={{ fontSize: "12px" }}
+              style={{ fontSize: "14px", cursor: "pointer" }}
             >
               A
-            </span>{" "}
+            </span>
+            <span style={{ color: "grey" }}>{" | "}</span>
             <span
               onClick={() => setFontSize("normal")}
-              style={{ fontSize: "16px" }}
+              style={{ fontSize: "18px", cursor: "pointer" }}
             >
               A
-            </span>{" "}
+            </span>
+            <span style={{ color: "grey" }}>{" | "}</span>
             <span
               onClick={() => setFontSize("big")}
-              style={{ fontSize: "20px" }}
+              style={{ fontSize: "22px", cursor: "pointer" }}
             >
               A
             </span>
