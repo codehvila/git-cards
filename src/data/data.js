@@ -86,6 +86,7 @@ const cardBashList = {
   ],
   "Print in bash terminal": ['echo "Hola mundo"'],
   "Display the contents of a text file": ["cat filename", "less filename"],
+  "Find a directory": ["find ~/code/ -type d -name '*git-cards*'"],
 };
 
 // Insert the following line into the file that imports this file:
