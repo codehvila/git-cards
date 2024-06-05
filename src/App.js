@@ -1,4 +1,4 @@
-import { useState, Fragment } from "react";
+import { useState, Fragment, useEffect } from "react";
 import { v4 as uuidv4 } from "uuid";
 import logo from "./logo.svg";
 import "./App.css";
@@ -21,6 +21,8 @@ function App() {
   };
 
   const [notification, setNotification] = useState(null);
+  const [cardFilter, setCardFilter] = useState(null);
+  const [cardsFiltered, setCardsFiltered] = useState([]);
 
   const cardObject = [{ git: cardGitList }, { bash: cardBashList }];
   const correctCardObject = { git: cardGitList, bash: cardBashList };
@@ -42,6 +44,26 @@ function App() {
   };
 
   const cardList = cardObjectToCardList(correctCardObject);
+
+  useEffect(() => {
+    setCardsFiltered(cardList);
+
+    return () => {
+      setCardsFiltered(null);
+    };
+  }, []);
+
+  useEffect(() => {
+    if (cardFilter !== null) {
+      setCardsFiltered(cardList.filter((card) => card.type === cardFilter));
+    } else {
+      setCardsFiltered(cardList);
+    }
+
+    return () => {
+      setCardsFiltered(null);
+    };
+  }, [cardFilter]);
 
   return (
     <div className="App">
@@ -88,16 +110,25 @@ function App() {
           </div>
         </div>
         <div className="card-types">
+          <span key={uuidv4()} style={{ fontWeight: "bolder" }}>
+            <button onClick={() => setCardFilter(null)}>All cards</button>
+            &nbsp;
+          </span>
           {cardObject &&
             cardObject.map((cardTypes) => (
               <span key={uuidv4()} style={{ fontWeight: "bolder" }}>
-                {Object.keys(cardTypes)}&nbsp;
+                <button
+                  onClick={() => setCardFilter(Object.keys(cardTypes)[0])}
+                >
+                  {Object.keys(cardTypes)}
+                </button>
+                &nbsp;
               </span>
             ))}
         </div>
         <div className="cards-container">
-          {cardList &&
-            cardList.map((card) => (
+          {cardsFiltered &&
+            cardsFiltered.map((card) => (
               <Fragment key={uuidv4()}>
                 <Card key={uuidv4()} title={card.title} type={card.type}>
                   <Command>
