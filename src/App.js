@@ -24,9 +24,7 @@ function App() {
   const [cardFilter, setCardFilter] = useState(null);
   const [cardsFiltered, setCardsFiltered] = useState([]);
 
-  const cardObject = [{ git: cardGitList }, { bash: cardBashList }];
   const correctCardObject = { git: cardGitList, bash: cardBashList };
-  // const cardObject = { ...cardBashList, ...cardGitList };
 
   const cardObjectToCardList = (cardsObject) => {
     const cardList = [];
@@ -44,6 +42,10 @@ function App() {
   };
 
   const cardList = cardObjectToCardList(correctCardObject);
+  const uniqueCardTypeList = cardList.reduce((tipos, card) => {
+    if (!tipos.includes(card.type)) tipos.push(card.type);
+    return tipos;
+  }, []);
 
   useEffect(() => {
     setCardsFiltered(cardList);
@@ -109,23 +111,22 @@ function App() {
             </span>
           </div>
         </div>
-        <div className="card-types">
+
+        <Fragment>
           <span key={uuidv4()} style={{ fontWeight: "bolder" }}>
             <button onClick={() => setCardFilter(null)}>All cards</button>
             &nbsp;
           </span>
-          {cardObject &&
-            cardObject.map((cardTypes) => (
+          {uniqueCardTypeList &&
+            uniqueCardTypeList.map((cardType) => (
               <span key={uuidv4()} style={{ fontWeight: "bolder" }}>
-                <button
-                  onClick={() => setCardFilter(Object.keys(cardTypes)[0])}
-                >
-                  {Object.keys(cardTypes)}
+                <button onClick={() => setCardFilter(cardType)}>
+                  {cardType}
                 </button>
                 &nbsp;
               </span>
             ))}
-        </div>
+        </Fragment>
         <div className="cards-container">
           {cardsFiltered &&
             cardsFiltered.map((card) => (
