@@ -70,6 +70,7 @@ const cardGitList = {
     "git checkout -b branch-name",
     "git switch -c branch-name",
   ],
+  "Restore a file to a previous commit": ["git checkout <commit> -- <file>"],
 };
 
 const cardBashList = {
