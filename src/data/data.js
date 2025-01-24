@@ -65,6 +65,11 @@ const cardGitList = {
   "Compare a file in the current branch with one in another branch": [
     "git diff <other_branch> -- <file_path>",
   ],
+  "Change branch": ["git checkout branch-name", "git switch branch-name"],
+  "Create a new branch and switch to them": [
+    "git checkout -b branch-name",
+    "git switch -c branch-name",
+  ],
 };
 
 const cardBashList = {
