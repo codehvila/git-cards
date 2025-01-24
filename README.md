@@ -71,4 +71,10 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 
 ---
 
+## How to start
+
+### Run in terminal
+
+`git clone <git@github.com:username/repository-name.git>`
+
 `npm install`
