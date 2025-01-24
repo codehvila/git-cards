@@ -2,6 +2,15 @@
 // echo 'history | grep cp' >> data/data.txt
 
 const cardGitList = {
+  "Clone a repository": [
+    "git clone git@github.com:<username>/<repository-name>.git",
+  ],
+  "Initialize a repository": ["git init"],
+  "Show remotes": ["git remote"],
+  "Show remote URLs": ["git remote -v"],
+  "Add a remote": ["git remote add origin <path-to-repository>"],
+  "Remove a remote": ["git remote remove origin"],
+  "Update remote URL": ["git remote set-url origin <path-to-repository>"],
   "Rewrite history": [
     "git rebase -i HEAD~n",
     "git add path/to/filename",
