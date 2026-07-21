@@ -3,3 +3,18 @@
 // expect(element).toHaveTextContent(/react/i)
 // learn more: https://github.com/testing-library/jest-dom
 import '@testing-library/jest-dom';
+import { beforeEach, vi } from 'vitest';
+
+// jsdom does not implement the Clipboard API, so stub it once here instead
+// of duplicating the same defineProperty in every test file that clicks a
+// Sentence.
+Object.defineProperty(navigator, 'clipboard', {
+  value: { writeText: vi.fn() },
+  configurable: true,
+  writable: true,
+});
+
+beforeEach(() => {
+  navigator.clipboard.writeText.mockReset();
+  navigator.clipboard.writeText.mockResolvedValue(undefined);
+});
