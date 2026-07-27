@@ -27,9 +27,12 @@ nueva sección por fichero a medida que se revisen (componentes, tests, etc.).
   `document.querySelector("html")` dentro del componente en vez del enfoque
   declarativo habitual de React para tocar el DOM.
 
-- [ ] **`key={uuidv4()}` generado en cada render**. Aparece en varios puntos
-  del JSX (lista de filtros, tarjetas, sentencias). No sigue la convención
-  idiomática de React para la prop `key` (debe ser estable entre renders).
+- [x] **`key={uuidv4()}` generado en cada render** — resuelto. Las keys ahora
+  se derivan de los propios datos: `` `${card.type}+${card.title}` `` para las
+  tarjetas (único por construcción, ya que `title` es clave de objeto dentro
+  de cada `type`) y `` `${index}-${sentence}` `` para las sentencias de cada
+  card. El import de `uuidv4`/`uuid` se ha eliminado del fichero y de
+  `package.json`.
 
 - [ ] **Guardas `&&` redundantes antes de `.map()`**. Tanto
   `uniqueCardTypeList &&` como `cardsFiltered &&` comprueban valores que
@@ -116,7 +119,8 @@ nueva sección por fichero a medida que se revisen (componentes, tests, etc.).
 
 - Este documento nace de una revisión de idiomaticidad, no de bugs (los
   `useEffect` innecesarios de `App.jsx` ya se eliminaron, ver `92fd520`).
-- Relacionado con la nota pendiente de `MIGRATION_PLAN.md` sobre keys
-  estables en vez de `uuidv4()`.
-- Al abordar las keys estables, revisar antes la fragilidad ya detectada en
-  `App.test.jsx` (selección por orden y acoplamiento a `data.js`).
+- La nota pendiente de `MIGRATION_PLAN.md` sobre keys estables en vez de
+  `uuidv4()` queda resuelta con este cambio.
+- Pendiente de verificar: dado que las keys de `App.jsx` han cambiado, revisar
+  si la fragilidad ya detectada en `App.test.jsx` (selección por orden y
+  acoplamiento a `data.js`) se ve afectada.

@@ -105,6 +105,8 @@ en Vite: **no requieren cambios**.
    CRA.
 
 ## Notas
-- Tras esta migración quedan pendientes (fuera de alcance aquí) las mejoras ya
-  detectadas: keys estables en vez de `uuidv4()`, limpieza de `useEffect`,
-  README real y tests significativos.
+- Tras esta migración quedaban pendientes (fuera de alcance aquí) varias
+  mejoras ya detectadas. Todas se han completado desde entonces: limpieza de
+  `useEffect` (`92fd520`), README real, tests significativos (`Card`,
+  `Command`, `Popup`, `Sentence`, `App`) y keys estables en vez de `uuidv4()`
+  (ver `IDIOMATIC_ROADMAP.md`).

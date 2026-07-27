@@ -1,5 +1,4 @@
 import { useState, Fragment } from "react";
-import { v4 as uuidv4 } from "uuid";
 import logo from "./logo.svg";
 import "./App.css";
 
@@ -16,7 +15,7 @@ function App() {
     const htmlElement = document.querySelector("html");
     htmlElement.style.setProperty(
       "--rootfontsize",
-      `${objectFontSize[fontSize]}`
+      `${objectFontSize[fontSize]}`,
     );
   };
 
@@ -48,9 +47,9 @@ function App() {
   }, []);
 
   if (cardFilter !== null) {
-    cardsFiltered = (cardList.filter((card) => card.type === cardFilter));
+    cardsFiltered = cardList.filter((card) => card.type === cardFilter);
   } else {
-    cardsFiltered = (cardList);
+    cardsFiltered = cardList;
   }
 
   return (
@@ -99,13 +98,13 @@ function App() {
         </div>
 
         <Fragment>
-          <span key={uuidv4()} style={{ fontWeight: "bolder" }}>
+          <span key={`all-cards`} style={{ fontWeight: "bolder" }}>
             <button onClick={() => setCardFilter(null)}>All cards</button>
             &nbsp;
           </span>
           {uniqueCardTypeList &&
             uniqueCardTypeList.map((cardType) => (
-              <span key={uuidv4()} style={{ fontWeight: "bolder" }}>
+              <span key={`${cardType}-cards`} style={{ fontWeight: "bolder" }}>
                 <button onClick={() => setCardFilter(cardType)}>
                   {cardType}
                 </button>
@@ -116,11 +115,11 @@ function App() {
         <div className="cards-container">
           {cardsFiltered &&
             cardsFiltered.map((card) => (
-              <Fragment key={uuidv4()}>
-                <Card key={uuidv4()} title={card.title} type={card.type}>
+              <Fragment key={`${card.type}+${card.title}`}>
+                <Card title={card.title} type={card.type}>
                   <Command>
-                    {card.sentences.map((sentence) => (
-                      <Fragment key={uuidv4()}>
+                    {card.sentences.map((sentence, index) => (
+                      <Fragment key={`${index}-${sentence}`}>
                         <Sentence setNotification={setNotification}>
                           {sentence}
                         </Sentence>
