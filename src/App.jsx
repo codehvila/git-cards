@@ -1,4 +1,4 @@
-import { useState, Fragment, useEffect } from "react";
+import { useState, Fragment } from "react";
 import { v4 as uuidv4 } from "uuid";
 import logo from "./logo.svg";
 import "./App.css";
@@ -22,7 +22,7 @@ function App() {
 
   const [notification, setNotification] = useState(null);
   const [cardFilter, setCardFilter] = useState(null);
-  const [cardsFiltered, setCardsFiltered] = useState([]);
+  let cardsFiltered = [];
 
   const correctCardObject = { git: cardGitList, bash: cardBashList };
 
@@ -47,25 +47,11 @@ function App() {
     return tipos;
   }, []);
 
-  useEffect(() => {
-    setCardsFiltered(cardList);
-
-    return () => {
-      setCardsFiltered(null);
-    };
-  }, []);
-
-  useEffect(() => {
-    if (cardFilter !== null) {
-      setCardsFiltered(cardList.filter((card) => card.type === cardFilter));
-    } else {
-      setCardsFiltered(cardList);
-    }
-
-    return () => {
-      setCardsFiltered(null);
-    };
-  }, [cardFilter]);
+  if (cardFilter !== null) {
+    cardsFiltered = (cardList.filter((card) => card.type === cardFilter));
+  } else {
+    cardsFiltered = (cardList);
+  }
 
   return (
     <div className="App">
