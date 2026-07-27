@@ -115,12 +115,26 @@ nueva sección por fichero a medida que se revisen (componentes, tests, etc.).
   `React` para usar JSX; aquí se mantiene únicamente para acceder a
   `StrictMode`.
 
+## `src/App.test.jsx`
+
+- [ ] **Selección por orden en el DOM**. `const [small, normal, big] =
+  screen.getAllByText('A')` (línea 50) depende del orden en que se rendericen
+  los tres botones de tamaño de fuente. Reordenarlos en `App.jsx` rompería
+  este test sin que exista ningún bug real.
+
+- [ ] **Acoplamiento a los literales de `data.js`**. Varios tests (líneas
+  12-13 y los de filtrado) afirman directamente sobre strings como
+  `'Clone a repository'` o `'Make a directory'`, que viven en
+  `src/data/data.js`. Editar ese contenido rompe varios tests de `App` a la
+  vez, aunque no haya ninguna regresión real de comportamiento.
+
 ## Notas
 
 - Este documento nace de una revisión de idiomaticidad, no de bugs (los
   `useEffect` innecesarios de `App.jsx` ya se eliminaron, ver `92fd520`).
 - La nota pendiente de `MIGRATION_PLAN.md` sobre keys estables en vez de
-  `uuidv4()` queda resuelta con este cambio.
-- Pendiente de verificar: dado que las keys de `App.jsx` han cambiado, revisar
-  si la fragilidad ya detectada en `App.test.jsx` (selección por orden y
-  acoplamiento a `data.js`) se ve afectada.
+  `uuidv4()` queda resuelta con este cambio (ver sección `src/App.jsx`).
+- El cambio de keys en `App.jsx` (`${card.type}+${card.title}` y
+  `${index}-${sentence}`) no afecta a la fragilidad de `App.test.jsx`: los 8
+  tests del fichero siguen en verde, ya que ninguno consulta por `key` (no es
+  un atributo observable en el DOM), solo por texto/rol.
