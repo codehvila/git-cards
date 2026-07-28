@@ -110,10 +110,9 @@ nueva sección por fichero a medida que se revisen (componentes, tests, etc.).
 
 ## `src/main.jsx`
 
-- [ ] **`import React from "react"` solo para `React.StrictMode`**. Con el
-  JSX transform moderno (React 17+) ya no hace falta el import por defecto de
-  `React` para usar JSX; aquí se mantiene únicamente para acceder a
-  `StrictMode`.
+- [x] **`import React from "react"` solo para `React.StrictMode`** — resuelto.
+  Ahora se importa `StrictMode` como named export (`import { StrictMode } from
+  "react"`), sin necesidad del import por defecto de `React`.
 
 ## `src/App.test.jsx`
 
