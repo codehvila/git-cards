@@ -47,9 +47,9 @@ nueva sección por fichero a medida que se revisen (componentes, tests, etc.).
 
 ## `src/components/card/Card.jsx`
 
-- [ ] **`props` destructurado en el cuerpo en vez de en la firma**. `Card(props)`
-  seguido de `const { children, title, type } = props;` en vez de
-  desestructurar directamente en los parámetros de la función.
+- [x] **`props` destructurado en el cuerpo en vez de en la firma** — resuelto.
+  Ahora `Card({ children, title, type })` desestructura directamente en los
+  parámetros de la función.
 
 - [ ] **Guarda redundante en el ternario del icono**. `type && type === "git"`
   comprueba dos veces lo mismo: `type === "git"` ya es `false` de forma segura

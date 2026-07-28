@@ -2,9 +2,7 @@ import styles from "./Card.module.css";
 import gitIcon from "./git.svg";
 import bashIcon from "./bash.svg";
 
-export default function Card(props) {
-  const { children, title, type } = props;
-
+export default function Card({ children, title, type }) {
   return (
     <div className={styles.container}>
       <div className={styles.card}>
