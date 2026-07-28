@@ -13,7 +13,7 @@ export default function Card({ children, title, type }) {
 
           <div className={styles.title}>{title}</div>
           <div className={styles.icon}>
-            {type && type === "git" ? (
+            {type === "git" ? (
               <img src={gitIcon} alt="Git icon" />
             ) : (
               <img src={bashIcon} alt="Bash icon" />

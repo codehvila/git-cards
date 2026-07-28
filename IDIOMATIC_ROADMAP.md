@@ -51,9 +51,8 @@ nueva sección por fichero a medida que se revisen (componentes, tests, etc.).
   Ahora `Card({ children, title, type })` desestructura directamente en los
   parámetros de la función.
 
-- [ ] **Guarda redundante en el ternario del icono**. `type && type === "git"`
-  comprueba dos veces lo mismo: `type === "git"` ya es `false` de forma segura
-  si `type` es `undefined`.
+- [x] **Guarda redundante en el ternario del icono** — resuelto. Ahora es
+  simplemente `type === "git"`, sin la comprobación `type &&` previa.
 
 - [ ] **Fallback implícito a `bashIcon`**. Cualquier `type` que no sea
   exactamente `"git"` (incluido `undefined`, un typo, o un tipo nuevo futuro)
