@@ -1,7 +1,3 @@
 export default function Command({ children }) {
-  return (
-    <>
-      <div className="commands">{children}</div>
-    </>
-  );
+  return <div className="commands">{children}</div>;
 }

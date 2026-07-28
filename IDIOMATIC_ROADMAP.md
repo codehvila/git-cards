@@ -62,9 +62,9 @@ nueva sección por fichero a medida que se revisen (componentes, tests, etc.).
 
 ## `src/components/command/Command.jsx`
 
-- [ ] **`<>...</>` envolviendo un único elemento**. Solo hay un `<div>` como
-  hijo; el Fragment no aporta nada ahí porque no hace falta agrupar varios
-  elementos.
+- [x] **`<>...</>` envolviendo un único elemento** — resuelto. El componente
+  devuelve directamente `<div className="commands">{children}</div>` sin
+  Fragment envolvente.
 
 ## `src/components/popup/Popup.jsx`
 
