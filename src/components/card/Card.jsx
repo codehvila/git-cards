@@ -3,6 +3,12 @@ import gitIcon from "./git.svg";
 import bashIcon from "./bash.svg";
 
 export default function Card({ children, title, type }) {
+  const iconByType = {
+    git: { src: gitIcon, alt: "Git icon" },
+    bash: { src: bashIcon, alt: "Bash icon" },
+  };
+  const icon = iconByType[type] ?? { src: undefined, alt: "Unknown icon" };
+
   return (
     <div className={styles.container}>
       <div className={styles.card}>
@@ -13,11 +19,7 @@ export default function Card({ children, title, type }) {
 
           <div className={styles.title}>{title}</div>
           <div className={styles.icon}>
-            {type === "git" ? (
-              <img src={gitIcon} alt="Git icon" />
-            ) : (
-              <img src={bashIcon} alt="Bash icon" />
-            )}
+            <img src={icon.src} alt={`${icon.alt}`} />
           </div>
         </div>
 

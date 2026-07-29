@@ -54,10 +54,12 @@ nueva sección por fichero a medida que se revisen (componentes, tests, etc.).
 - [x] **Guarda redundante en el ternario del icono** — resuelto. Ahora es
   simplemente `type === "git"`, sin la comprobación `type &&` previa.
 
-- [ ] **Fallback implícito a `bashIcon`**. Cualquier `type` que no sea
-  exactamente `"git"` (incluido `undefined`, un typo, o un tipo nuevo futuro)
-  cae silenciosamente en el icono de bash, sin un manejo explícito de los
-  tipos conocidos.
+- [x] **Fallback implícito a `bashIcon`** — resuelto. Ahora `iconByType` es
+  una tabla de lookup (`{ git: {src, alt}, bash: {src, alt} }`) y un `type`
+  que no está en la tabla cae en un fallback explícito (`{ src: undefined,
+  alt: "Unknown icon" }`) en vez de mostrarse como si fuera bash. Un tipo
+  desconocido ahora se ve (icono roto + `alt="Unknown icon"`) en vez de
+  esconderse.
 
 ## `src/components/command/Command.jsx`
 
