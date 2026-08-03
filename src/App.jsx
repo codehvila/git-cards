@@ -75,6 +75,7 @@ function App() {
         <div className="rootfontsize">
           <div>
             <span
+              data-testid="rootfontsizesmall"
               onClick={() => setFontSize("small")}
               style={{ fontSize: "14px", cursor: "pointer" }}
             >
@@ -82,6 +83,7 @@ function App() {
             </span>
             <span style={{ color: "grey" }}>{" | "}</span>
             <span
+              data-testid="rootfontsizenormal"
               onClick={() => setFontSize("normal")}
               style={{ fontSize: "18px", cursor: "pointer" }}
             >
@@ -89,6 +91,7 @@ function App() {
             </span>
             <span style={{ color: "grey" }}>{" | "}</span>
             <span
+              data-testid="rootfontsizebig"
               onClick={() => setFontSize("big")}
               style={{ fontSize: "22px", cursor: "pointer" }}
             >

@@ -117,10 +117,12 @@ nueva sección por fichero a medida que se revisen (componentes, tests, etc.).
 
 ## `src/App.test.jsx`
 
-- [ ] **Selección por orden en el DOM**. `const [small, normal, big] =
-  screen.getAllByText('A')` (línea 50) depende del orden en que se rendericen
-  los tres botones de tamaño de fuente. Reordenarlos en `App.jsx` rompería
-  este test sin que exista ningún bug real.
+- [x] **Selección por orden en el DOM** — resuelto. Cada `<span>` de tamaño
+  de fuente lleva ahora su propio `data-testid`
+  (`rootfontsizesmall`/`rootfontsizenormal`/`rootfontsizebig`) y el test los
+  consulta con `screen.getByTestId(...)` en vez de depender del orden
+  devuelto por `getAllByText('A')`. Reordenar los `<span>` en `App.jsx` ya no
+  rompería este test.
 
 - [ ] **Acoplamiento a los literales de `data.js`**. Varios tests (líneas
   12-13 y los de filtrado) afirman directamente sobre strings como
