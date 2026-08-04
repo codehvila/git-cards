@@ -1,5 +1,9 @@
 import { fireEvent, render, screen } from "@testing-library/react";
 import App from "./App";
+import { cardGitList, cardBashList } from "./data/data";
+
+const firstGitText = Object.keys(cardGitList)[0];
+const firstBashText = Object.keys(cardBashList)[0];
 
 test("renders learn react link", () => {
   render(<App />);
@@ -9,8 +13,9 @@ test("renders learn react link", () => {
 
 test("renders both git and bash cards initially", () => {
   render(<App />);
-  expect(screen.getByText("Clone a repository")).toBeInTheDocument();
-  expect(screen.getByText("Make a directory")).toBeInTheDocument();
+
+  expect(screen.getByText(firstGitText)).toBeInTheDocument();
+  expect(screen.getByText(firstBashText)).toBeInTheDocument();
 });
 
 test('shows the "All cards", "git" and "bash" filter buttons', () => {
@@ -24,16 +29,16 @@ test('filtering by "git" hides bash cards and keeps git cards', () => {
   render(<App />);
   fireEvent.click(screen.getByRole("button", { name: "git" }));
 
-  expect(screen.getByText("Clone a repository")).toBeInTheDocument();
-  expect(screen.queryByText("Make a directory")).not.toBeInTheDocument();
+  expect(screen.getByText(firstGitText)).toBeInTheDocument();
+  expect(screen.queryByText(firstBashText)).not.toBeInTheDocument();
 });
 
 test('filtering by "bash" hides git cards and keeps bash cards', () => {
   render(<App />);
   fireEvent.click(screen.getByRole("button", { name: "bash" }));
 
-  expect(screen.getByText("Make a directory")).toBeInTheDocument();
-  expect(screen.queryByText("Clone a repository")).not.toBeInTheDocument();
+  expect(screen.getByText(firstBashText)).toBeInTheDocument();
+  expect(screen.queryByText(firstGitText)).not.toBeInTheDocument();
 });
 
 test('"All cards" resets the filter after filtering', () => {
@@ -41,13 +46,12 @@ test('"All cards" resets the filter after filtering', () => {
   fireEvent.click(screen.getByRole("button", { name: "git" }));
   fireEvent.click(screen.getByRole("button", { name: "All cards" }));
 
-  expect(screen.getByText("Clone a repository")).toBeInTheDocument();
-  expect(screen.getByText("Make a directory")).toBeInTheDocument();
+  expect(screen.getByText(firstGitText)).toBeInTheDocument();
+  expect(screen.getByText(firstBashText)).toBeInTheDocument();
 });
 
 test("font size controls update the --rootfontsize CSS variable", () => {
   render(<App />);
-  // const [small, normal, big] = screen.getAllByText("A");
   const rootfontsizeSmall = screen.getByTestId("rootfontsizesmall");
   const rootfontsizeNormal = screen.getByTestId("rootfontsizenormal");
   const rootfontsizeBig = screen.getByTestId("rootfontsizebig");

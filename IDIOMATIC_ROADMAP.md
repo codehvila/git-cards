@@ -124,11 +124,13 @@ nueva sección por fichero a medida que se revisen (componentes, tests, etc.).
   devuelto por `getAllByText('A')`. Reordenar los `<span>` en `App.jsx` ya no
   rompería este test.
 
-- [ ] **Acoplamiento a los literales de `data.js`**. Varios tests (líneas
-  12-13 y los de filtrado) afirman directamente sobre strings como
-  `'Clone a repository'` o `'Make a directory'`, que viven en
-  `src/data/data.js`. Editar ese contenido rompe varios tests de `App` a la
-  vez, aunque no haya ninguna regresión real de comportamiento.
+- [x] **Acoplamiento a los literales de `data.js`** — resuelto. El fichero
+  ahora importa `cardGitList`/`cardBashList` de `./data/data` y deriva
+  `firstGitText`/`firstBashText` con `Object.keys(...)[0]` en vez de retipar
+  los títulos como strings sueltos. Los tests afectados (render inicial,
+  filtrado por git/bash, reset con "All cards") usan esas constantes, así que
+  editar el contenido de `data.js` ya no rompe estos tests mientras sigan
+  existiendo tarjetas de cada tipo.
 
 ## Notas
 
