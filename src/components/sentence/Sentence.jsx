@@ -3,7 +3,7 @@ import styles from "./Sentence.module.css";
 export default function Sentence(props) {
   const { setNotification, children } = props;
   const textSentenceNotification = children.toString();
-  const TEXT_NOTIFICACION = textSentenceNotification
+  const TEXT_NOTIFICATION = textSentenceNotification
     ? `"${textSentenceNotification}" copied to clipboard!`
     : "Command copied to clipboard!";
   const POPUP_CATEGORY = "info";
@@ -14,7 +14,7 @@ export default function Sentence(props) {
       await navigator.clipboard.writeText(textContent);
 
       setNotification({
-        text: TEXT_NOTIFICACION,
+        text: TEXT_NOTIFICATION,
         category: POPUP_CATEGORY,
         setNotification,
       });
@@ -24,13 +24,11 @@ export default function Sentence(props) {
   };
 
   return (
-    <>
-      <div className={styles.sentence}>
-        ${" "}
-        <span className={styles.copytoclipboard} onClick={copyContent}>
-          {children}
-        </span>
-      </div>
-    </>
+    <div className={styles.sentence}>
+      ${" "}
+      <span className={styles.copytoclipboard} onClick={copyContent}>
+        {children}
+      </span>
+    </div>
   );
 }

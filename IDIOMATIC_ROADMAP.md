@@ -96,9 +96,8 @@ nueva sección por fichero a medida que se revisen (componentes, tests, etc.).
   mismo texto — se vuelve a leer del DOM algo que React ya tiene en sus
   props.
 
-- [ ] **`TEXT_NOTIFICACION`**: nombre en español en un fichero que nombra todo
-  lo demás en inglés (mismo tipo de mezcla de idiomas que `tipos` en
-  `App.jsx`).
+- [x] **`TEXT_NOTIFICACION`** — resuelto. Renombrada a `TEXT_NOTIFICATION`,
+  consistente con el resto del fichero en inglés.
 
 - [ ] **`setNotification` incluido dentro del objeto que se pasa a
   `setNotification({...})`**. El payload de la notificación
@@ -106,8 +105,9 @@ nueva sección por fichero a medida que se revisen (componentes, tests, etc.).
   campo de datos; es el origen del mismo acoplamiento señalado en
   `Popup.jsx`.
 
-- [ ] **`<>...</>` envolviendo un único elemento**. Igual que en
-  `Command.jsx`, solo hay un `<div>` hijo.
+- [x] **`<>...</>` envolviendo un único elemento** — resuelto. Igual que en
+  `Command.jsx`, el `<div className={styles.sentence}>` era el único hijo, así
+  que se elimina el Fragment envolvente.
 
 ## `src/main.jsx`
 
