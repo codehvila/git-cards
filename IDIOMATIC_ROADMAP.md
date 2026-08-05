@@ -87,14 +87,18 @@ nueva sección por fichero a medida que se revisen (componentes, tests, etc.).
 
 ## `src/components/sentence/Sentence.jsx`
 
-- [ ] **`children.toString()`**. Asume que `children` admite una conversión a
-  texto razonable; es una suposición implícita sobre la forma de la prop en
-  vez de trabajar directamente con el valor ya disponible.
+- [x] **`children.toString()`** — resuelto. `textSentenceNotification` ahora
+  es directamente `children`, sin la conversión implícita, trabajando con el
+  valor ya disponible en vez de asumir que admite `.toString()`.
 
-- [ ] **`event.target.textContent` en `copyContent`**. Lee el contenido desde
-  el DOM en el evento de clic, en vez de usar `children`, que ya contiene ese
-  mismo texto — se vuelve a leer del DOM algo que React ya tiene en sus
-  props.
+- [x] **`event.target.textContent` en `copyContent`** — resuelto.
+  `copyContent` ya no recibe el `event` ni lee del DOM; usa `children`
+  directamente en `navigator.clipboard.writeText(children)`. De paso se
+  eliminaron los alias intermedios `textSentenceNotification`/`textContent`
+  (ambos eran simplemente `children` sin ninguna transformación), dejando
+  `children` usado directamente donde no hace falta derivar nada, y
+  `TEXT_NOTIFICATION` como la única constante que sí aplica una
+  transformación real (el ternario + template string).
 
 - [x] **`TEXT_NOTIFICACION`** — resuelto. Renombrada a `TEXT_NOTIFICATION`,
   consistente con el resto del fichero en inglés.
