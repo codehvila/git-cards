@@ -41,9 +41,9 @@ function App() {
   };
 
   const cardList = cardObjectToCardList(correctCardObject);
-  const uniqueCardTypeList = cardList.reduce((tipos, card) => {
-    if (!tipos.includes(card.type)) tipos.push(card.type);
-    return tipos;
+  const uniqueCardTypeList = cardList.reduce((types, card) => {
+    if (!types.includes(card.type)) types.push(card.type);
+    return types;
   }, []);
 
   if (cardFilter !== null) {

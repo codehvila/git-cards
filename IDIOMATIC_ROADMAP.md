@@ -19,9 +19,9 @@ nueva sección por fichero a medida que se revisen (componentes, tests, etc.).
   externo, devolviendo `null` en cada callback, en vez de usarlo para
   transformar y devolver un array nuevo.
 
-- [ ] **Mezcla de idiomas en el naming**. La variable `tipos` (dentro del
-  `reduce` que construye `uniqueCardTypeList`) está en español mientras el
-  resto del fichero nombra todo en inglés.
+- [x] **Mezcla de idiomas en el naming** — resuelto. La variable `tipos`
+  (dentro del `reduce` que construye `uniqueCardTypeList`) se ha renombrado a
+  `types`, consistente con el resto del fichero en inglés.
 
 - [ ] **Acceso directo al DOM en `setFontSize`**. Usa
   `document.querySelector("html")` dentro del componente en vez del enfoque
